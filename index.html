@@ -7,22 +7,35 @@
   <title>Document</title>
 </head>
 <body>
-  <h1 id="title"></h1>
-  <p id="plot"></p>
+  <!-- <h1 id="title"></h1>
+  <p id="plot"></p> -->
+  <img src="" alt="" id="pokemon">
   <script>
 
-    const apiUrl = 'http://www.omdbapi.com/?apikey=trilogy&t=Goodfellas'
-
-    fetch(apiUrl)
-      .then(res => {
-        return res.json()
-      })
+    fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
+      .then(res => res.json())
       .then(data => {
         console.log(data)
-        document.getElementById('title').textContent = data.Title
-        document.getElementById('plot').textContent = data.Plot
+        const image = data.sprites.front_shiny
+        const alt = data.name
+        document.getElementById('pokemon').setAttribute('src', image)
+        document.getElementById('pokemon').setAttribute('alt', alt)
+
       })
       .catch(err => console.error(err))
+
+    // const apiUrl = 'http://www.omdbapi.com/?apikey=trilogy&t=Goodfellas'
+
+    // fetch(apiUrl)
+    //   .then(res => {
+    //     return res.json()
+    //   })
+    //   .then(data => {
+    //     console.log(data)
+    //     document.getElementById('title').textContent = data.Title
+    //     document.getElementById('plot').textContent = data.Plot
+    //   })
+    //   .catch(err => console.error(err))
 
   </script>
 </body>
